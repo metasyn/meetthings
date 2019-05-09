@@ -1,3 +1,9 @@
+# meetthings
+
+meetthings is a tool for centralizing meeting planning and organization for [noisebridge](noisebridge.net)
+
+# repo organization
+
 The directory `schema` holds json files which describe data requirements. Right now only `meetthings.json` is important.
 
 The model is:
@@ -6,26 +12,40 @@ The model is:
 
 A dictionary of the forms is passed to the rendered, and used by the templates.
 
-Some extra information is required. In a file in the `instance` directory put this in `meetup-test-api.cfg`:
+# setup
 
-```python
-URLNAME="Meetup-API-Testing"
+First, make sure you've installed all the dependencies:
 
-SECRET_KEY='80b2c1c4-5024-49c2-816f-3c449109c53'
-MEETUP_API_SECRET='get your own'
-
-GROUP_ID="1556336"
-GROUP_URLNAME="Meetup-API-Testing"
-URLNAME="Meetup-API-Testing"
-
-VENUE_ID="4567"
-
-TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+```bash
+make setup install
 ```
-you’ll need to install the package:
-`pip install -e .`
 
-this should theoretically work at this stage:
-`$ flask run`
+After that, update `instance/meetup-test-api.cfg` with your `MEETUP_API_SECRET` if necessary.
 
-which will lauch a wsgi on port 5000. you can go to localhost:5000/NewEvent to see if everything went well.
+Then:
+
+```bash
+make server
+```
+
+which will lauch a wsgi on port 5000. you can go to `localhost:5000/NewEvent` to see if everything went well.
+
+# development
+
+You can format, lint, and typecheck your code with the make targets:
+
+```
+make format lint typecheck
+```
+
+which uses [black](https://github.com/python/black), [flake8](http://flake8.pycqa.org/en/latest/), and [mypy](https://mypy.readthedocs.io/en/latest/) respectively.
+
+# testing
+
+Run:
+
+```
+make tests
+```
+
+to run the unit tests.

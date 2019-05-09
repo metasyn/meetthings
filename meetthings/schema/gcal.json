@@ -63,10 +63,10 @@
   "attendeesOmitted": "boolean",
   "extendedProperties": {
 	  "private": {
-		  (key): "string"
+		  "key": "string"
 	  },
 	  "shared": {
-		  (key): "string"
+		  "key": "string"
 	  }
   },
   "hangoutLink": "string",
@@ -111,7 +111,7 @@
 		  "height": "integer",
 		  "display": "string",
 		  "preferences": {
-			  (key): "string"
+			  "key": "string"
 		  }
 	  },
 	  "anyoneCanAddSelf": "boolean",
@@ -143,3 +143,4 @@
 		  }
 	  ]
   }
+}

@@ -1,0 +1,5 @@
+# development
+python-dotenv
+flake8
+black
+mypy

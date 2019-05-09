@@ -3,3 +3,10 @@ __pycache__
 __pycache__/
 *.egg-info/
 instance
+
+.mypy_cache
+
+.venv
+.vscode
+*.swp
+*.swo

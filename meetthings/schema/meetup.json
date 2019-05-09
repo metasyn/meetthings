@@ -8,9 +8,6 @@
             ],
             "default": 1
         },
-        "name": {
-            "type": "string"
-        },
         "description": {
             "type": "string"
         },
@@ -76,5 +73,7 @@
         },
         "why": {
             "type": "string"
-        },
+        }
+    }
+}
     

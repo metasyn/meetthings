@@ -1,24 +1,17 @@
 from collections import defaultdict
 from flask_wtf import FlaskForm
 from meetthings.util import get_validators
-from wtforms import (
-    StringField,
-    BooleanField,
-    IntegerField,
-    DateTimeField,
-    FormField,
-)
+from wtforms import StringField, BooleanField, IntegerField, DateTimeField, FormField
 
 FIELD_MAPPING = {
-    'string': StringField,
-    'boolean': BooleanField,
-    'integer': IntegerField,
-    'datetime': DateTimeField,
+    "string": StringField,
+    "boolean": BooleanField,
+    "integer": IntegerField,
+    "datetime": DateTimeField,
 }
 
 
 class Promise:
-
     def __init__(self, name, field_def):
         self.name = name
         self.schema = field_def
@@ -28,7 +21,6 @@ class Promise:
 
 
 class MeetthingsForm(FlaskForm):
-
     @classmethod
     def append_field(cls, name, field):
         setattr(cls, name, field)
@@ -40,19 +32,18 @@ def create_field(name, field_def):
     # hold a promise to do that, then reprocess once all top level fields
     # are done.
 
-    field_class = FIELD_MAPPING.get(field_def['type'])
+    field_class = FIELD_MAPPING.get(field_def["type"])
 
     if field_class is None:
-        return(Promise(name, field_def))
+        return Promise(name, field_def)
 
-    field_validator_defs = field_def.get('validators')
+    field_validator_defs = field_def.get("validators")
     if field_validator_defs:
         field_validators = get_validators(field_validator_defs)
     else:
         field_validators = None
 
-    kwargs = {'label': name,
-              'validators': field_validators}
+    kwargs = {"label": name, "validators": field_validators}
 
     return field_class(**kwargs)
 
@@ -62,7 +53,7 @@ def form_factory(schema):
     forms = {}
 
     for form, form_def in schema.items():
-        form_obj = type(form, (MeetthingsForm, ), {})
+        form_obj = type(form, (MeetthingsForm,), {})
 
         fields = []
         for field, field_def in form_def.items():
@@ -97,15 +88,15 @@ def form_factory(schema):
                 if field_name in FIELD_MAPPING:
                     field = FormField(forms[field_name])
                     setattr(form_obj, field_name, field)
-                    del(promises[form][field_idx])
+                    del promises[form][field_idx]
 
                 if len(promises[form]) == 0:
                     FIELD_MAPPING[form] = forms[form]
-                    del(promises[form])
+                    del promises[form]
 
         # just in case I messed something up and we hit an infinite loop
         counter += 1
         if counter > 100:
             raise Exception
 
-    return(forms)
+    return forms

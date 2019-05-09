@@ -6,7 +6,7 @@ class Length:
         self.min = min
         self.max = max
         if not message:
-            mesasge = u'Field must be between {} and {}'.format(min, max)
+            message = u"Field must be between {} and {}".format(min, max)
 
         self.message = message
 
@@ -24,7 +24,7 @@ class IsValidValue:
         self.min = min
         self.max = max
         if not message:
-            message = u'Field must be between {} and {}'.format(min, max)
+            message = u"Field must be between {} and {}".format(min, max)
 
         self.message = message
 

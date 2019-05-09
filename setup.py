@@ -20,5 +20,6 @@ setup(
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python 3',
     ],
+    install_requires=['flask-wtf'],
     keywords="meeting meetings meetup",
 )
