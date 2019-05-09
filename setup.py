@@ -1,7 +1,7 @@
 import io
 from setuptools import setup, find_packages
 
-readme_file = io.open('README.rst', encoding='utf-8')
+readme_file = io.open('README.md', encoding='utf-8')
 
 with readme_file:
     long_description = readme_file.read()
